@@ -1,0 +1,27 @@
+services:
+   java-app:
+      build: .
+      ports:
+      - 9090:8080
+      environment:
+         SPRING_DATASOURCE_URL: jdbc:mysql://mysql-app:3306/practice?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true
+         SPRING_DATASOURCE_USERNAME: test
+         SPRING_DATASOURCE_PASSWORD: test
+      depends_on:
+      - mysql-app
+
+   mysql-app:
+      image: mysql
+      ports:
+      - 3306:3306
+      restart: always
+      environment:
+        MYSQL_DATABASE: practice
+        MYSQL_ROOT_PASSWORD: admin
+        MYSQL_USER: test
+        MYSQL_PASSWORD: test
+      volumes: 
+        - mysql_data:/var/lib/mysql
+ 
+volumes:
+  mysql_data:
