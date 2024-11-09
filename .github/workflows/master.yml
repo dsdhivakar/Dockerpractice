@@ -22,7 +22,6 @@ jobs:
           MYSQL_PASSWORD: test
         ports:
           - 3306:3306
-        container_name: mysql-app
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
