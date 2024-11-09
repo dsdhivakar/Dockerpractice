@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql-app:
+      mysql:
         image: mysql
         env:
           MYSQL_ROOT_PASSWORD: admin
@@ -22,6 +22,7 @@ jobs:
           MYSQL_PASSWORD: test
         ports:
           - 3306:3306
+        container_name: mysql-app
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
@@ -42,7 +43,7 @@ jobs:
         run: docker ps
       - name: Wait for MySQL to be ready
         run: |
-          until docker exec $(docker ps -q --filter ancestor=mysql-app) mysqladmin --user=root --password=admin --host=mysql-app --port=3306 ping --silent; do
+          until docker exec $(docker ps -q --filter ancestor=mysql) mysqladmin --user=root --password=admin --host=localhost --port=3306 ping --silent; do
             echo "Waiting for MySQL..."
             sleep 5
           done
