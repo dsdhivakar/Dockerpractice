@@ -38,6 +38,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: List running containers
+        run: docker ps
       - name: Wait for MySQL to be ready
         run: |
           until docker exec $(docker ps -q --filter ancestor=mysql-app) mysqladmin --user=root --password=admin --host=mysql-app --port=3306 ping --silent; do
