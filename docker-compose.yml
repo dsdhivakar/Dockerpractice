@@ -16,12 +16,12 @@ services:
       - 3306:3306
       restart: always
       environment:
-        MYSQL_DATABASE: practice
-        MYSQL_ROOT_PASSWORD: admin
-        MYSQL_USER: test
-        MYSQL_PASSWORD: test
-      volumes: 
-        - mysql_data:/var/lib/mysql
- 
+         MYSQL_DATABASE: practice
+         MYSQL_ROOT_PASSWORD: admin
+         MYSQL_USER: test
+         MYSQL_PASSWORD: test
+      volumes:
+      - mysql_data:/var/lib/mysql
+
 volumes:
-  mysql_data:
+   mysql_data: null
