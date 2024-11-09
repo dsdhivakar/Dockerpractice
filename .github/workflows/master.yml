@@ -68,10 +68,6 @@ jobs:
          run: docker ps
       -  name: Docker compose down
          run: docker-compose down
-
-
-      -  name: Generate deployment package
-         run: zip -r deploy.zip target/practice1-0.0.1-SNAPSHOT.jar
       
       -  name: Deploy to EB
          uses: einaregilsson/beanstalk-deploy@v18
@@ -83,4 +79,4 @@ jobs:
             existing_bucket_name: elasticbeanstalk-us-east-1-277707100561
             region: us-east-1
             version_label: ${{ github.sha }}
-            deployment_package: deploy.zip
+            deployment_package: target/practice1-0.0.1-SNAPSHOT.jar
