@@ -46,7 +46,8 @@ jobs:
             echo "Waiting for MySQL..."
             sleep 5
           done
-          echo "MySQL is ready!""
+          echo "MySQL is ready!"
+      "
 
       - name: Build and Test with Maven
         run: mvn clean verify
